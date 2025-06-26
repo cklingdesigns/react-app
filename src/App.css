@@ -1,0 +1,146 @@
+
+.App {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+h1 {
+  width: 100%;
+  text-align: center;
+  flex-basis: 100%;
+  margin: 10px;
+}
+header {
+  width: 100%;
+  text-align: center;
+  flex-basis: 100%;
+  margin: 10px;
+}
+img.main-images {
+  height: 225px;
+  width: 100%;
+  object-fit: contain;
+  background-color: #212529;
+  object-position: center;
+  transition: opacity 0.5s ease;
+}
+img.main-images:hover {
+  cursor: pointer;
+}
+.App-logo {
+  height: 10vmin;
+  pointer-events: none;
+}
+
+@keyframes dance {
+  0%   { transform: translateY(0) rotate(0deg); }
+  20%  { transform: translateY(-5px) rotate(-5deg); }
+  40%  { transform: translateY(0) rotate(5deg); }
+  60%  { transform: translateY(-5px) rotate(-5deg); }
+  80%  { transform: translateY(0) rotate(5deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: dance 1s infinite ease-in-out;
+  }
+}
+
+.App-header {
+  align-items: center;
+  font-size: calc(18px + 2vmin);
+  color: grey;
+  height: 200px;
+  width: 300px;
+  border: 2px solid grey;
+  border-radius: 10px;
+  margin: 5px;
+  padding: 5px;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.button {
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+footer {
+  position: relative;
+  width: 100%;
+  height: 50vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+}
+footer .wave {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #0bbaf4;
+  box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
+  transition: 0.5s;
+}
+footer .wave span {
+  content: "";
+  position: absolute;
+  width: 225vh;
+  height: 225vh;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -75%);
+  background: #000;
+}
+.content {
+  position: relative;
+  z-index: 1;
+  font-size: 1em;
+  letter-spacing: 2px;
+  color: #fff;
+}
+footer .wave span:nth-child(1) {
+  border-radius: 45%;
+  background: rgba(20, 20, 20, 1);
+  animation: animate 5s linear infinite;
+}
+
+footer .wave span:nth-child(2) {
+  border-radius: 40%;
+  background: rgba(20, 20, 20, 0.5);
+  animation: animate 10s linear infinite;
+}
+footer .wave span:nth-child(3) {
+  border-radius: 42.5%;
+  background: rgba(20, 20, 20, 0.5);
+  animation: animate 15s linear infinite;
+}
+@keyframes animate {
+  0% {
+    transform: translate(-50%, -75%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -75%) rotate(360deg);
+  }
+}
