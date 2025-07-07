@@ -39,7 +39,8 @@ const ImageSlideshowHobbies = () => {
     </div>
   );
 };
-export default ImageSlideshowHobbies;
+
+export { ImageSlideshowHobbies };
 
 const ImageSlideshowFunDesigns = () => {
   const images = [

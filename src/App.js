@@ -1,22 +1,159 @@
 //import react from 'react'
 import './App.css';
 import './navBar/NavBar.js';
-import './test.py';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { Navbar, Nav, Container } from 'react-bootstrap';
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import ContactModal from './ContactModal';
-import ImageSlideshowHobbies from './ImageSlideshowOnHover';
-import { ImageSlideshowFunDesigns } from './ImageSlideshowOnHover';
-import { ImageSlideshowCoding } from './ImageSlideshowOnHover';
-import { ImageSlideshowWildSide } from './ImageSlideshowOnHover';
-import { ImageSlideshowMarketing } from './ImageSlideshowOnHover';
-import { ImageSlideshowSilly } from './ImageSlideshowOnHover';
-import { ImageSlideshowWoodworking } from './ImageSlideshowOnHover';
-import { ImageSlideshowHolidayFun } from './ImageSlideshowOnHover';
+import {
+  ImageSlideshowHobbies,
+  ImageSlideshowFunDesigns,
+  ImageSlideshowCoding,
+  ImageSlideshowWildSide,
+  ImageSlideshowMarketing,
+  ImageSlideshowSilly,
+  ImageSlideshowWoodworking,
+  ImageSlideshowHolidayFun,
+} from './ImageSlideshowOnHover';
+import {
+  ReactFlow,
+  useNodesState,
+  useEdgesState,
+  addEdge,
+  MiniMap,
+  Controls,
+} from '@xyflow/react';
+ 
+import '@xyflow/react/dist/style.css';
+ 
+import ColorSelectorNode from './ColorSelectorNode';
+ 
+const initBgColor = '#c9f1dd';
+ 
+const snapGrid = [20, 20];
+const nodeTypes = {
+  selectorNode: ColorSelectorNode,
+};
+ 
+const defaultViewport = { x: 0, y: 0, zoom: 1.5 };
+ 
+const CustomNodeFlow = () => {
+  const [nodes, setNodes, onNodesChange] = useNodesState([]);
+  const [edges, setEdges, onEdgesChange] = useEdgesState([]);
+  const [bgColor, setBgColor] = useState(initBgColor);
+ 
+  useEffect(() => {
+    const onChange = (event) => {
+      setNodes((nds) =>
+        nds.map((node) => {
+          if (node.id !== '2') {
+            return node;
+          }
+ 
+          const color = event.target.value;
+ 
+          setBgColor(color);
+ 
+          return {
+            ...node,
+            data: {
+              ...node.data,
+              color,
+            },
+          };
+        }),
+      );
+    };
+ 
+    setNodes([
+      {
+        id: '1',
+        type: 'input',
+        data: { label: 'An input node' },
+        position: { x: 0, y: 50 },
+        sourcePosition: 'right',
+      },
+      {
+        id: '2',
+        type: 'selectorNode',
+        data: { onChange: onChange, color: initBgColor },
+        position: { x: 300, y: 50 },
+      },
+      {
+        id: '3',
+        type: 'output',
+        data: { label: 'Output A' },
+        position: { x: 650, y: 25 },
+        targetPosition: 'left',
+      },
+      {
+        id: '4',
+        type: 'output',
+        data: { label: 'Output B' },
+        position: { x: 650, y: 100 },
+        targetPosition: 'left',
+      },
+    ]);
+ 
+    setEdges([
+      {
+        id: 'e1-2',
+        source: '1',
+        target: '2',
+        animated: true,
+      },
+      {
+        id: 'e2a-3',
+        source: '2',
+        target: '3',
+        animated: true,
+      },
+      {
+        id: 'e2b-4',
+        source: '2',
+        target: '4',
+        animated: true,
+      },
+    ]);
+  }, []);
+ 
+  const onConnect = useCallback(
+    (params) => setEdges((eds) => addEdge({ ...params, animated: true }, eds)),
+    [],
+  );
+  return (
+    <ReactFlow
+      nodes={nodes}
+      edges={edges}
+      onNodesChange={onNodesChange}
+      onEdgesChange={onEdgesChange}
+      onConnect={onConnect}
+      style={{ background: bgColor }}
+      nodeTypes={nodeTypes}
+      snapToGrid={true}
+      snapGrid={snapGrid}
+      defaultViewport={defaultViewport}
+      fitView
+      attributionPosition="bottom-left"
+    >
+      <MiniMap
+        nodeStrokeColor={(n) => {
+          if (n.type === 'input') return '#0041d0';
+          if (n.type === 'selectorNode') return bgColor;
+          if (n.type === 'output') return '#ff0072';
+        }}
+        nodeColor={(n) => {
+          if (n.type === 'selectorNode') return bgColor;
+          return '#fff';
+        }}
+      />
+      <Controls />
+    </ReactFlow>
+  );
+};
 
 function App() {
   const [showModal, setShowModal] = useState(false);
@@ -39,7 +176,7 @@ function App() {
             <Nav.Link href="https://www.facebook.com/corey.kling.9"><i className="fab fa-facebook"></i> Facebook</Nav.Link>
             <Nav.Link href="https://www.instagram.com/klincl01/"><i className="fab fa-instagram"></i> Instagram</Nav.Link>
             <Nav.Link href="https://www.linkedin.com/in/corey-kling-97468546/"><i className="fab fa-linkedin"></i> Linkedin</Nav.Link>
-            <Nav.Link href="https://github.com/cklingdesigns"><i className="fab fa-github"></i> GitGub</Nav.Link>
+            <Nav.Link href="https://github.com/cklingdesigns"><i className="fab fa-github"></i> GitHub</Nav.Link>
             <Nav.Link href="#" onClick={handleShow}><i className="fas fa-envelope"></i> Contact</Nav.Link>
           </Nav>
         </Navbar.Collapse>
@@ -55,7 +192,8 @@ function App() {
       </section>
       <div className="album py-5 bg-light">
         <div className="container">
-          <div className="row">
+          <div className="row text-center">
+            <div className="col-md-4"></div>
             <div className="col-md-4">
               <div className="card mb-4 box-shadow">
                   <ImageSlideshowCoding />
@@ -70,6 +208,9 @@ function App() {
                 </div>
               </div>
             </div>
+            <div className="col-md-4"></div>
+          </div>
+          <div className="row">
             <div className="col-md-4">
               <div className="card mb-4 box-shadow">
                 <ImageSlideshowHobbies />
@@ -177,12 +318,12 @@ function App() {
 
 
     <footer className="text-muted">
-      <div class="wave">
+      <div className="wave">
         <span></span>
         <span></span>
         <span></span>
       </div>
-      <div class="content">
+      <div className="content">
         <p className="float-right">
           <a href="#">Back to top</a>
         </p>
