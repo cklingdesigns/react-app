@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/react-cklingdesigns/static/css/main.95f453f8.css",
-    "main.js": "/react-cklingdesigns/static/js/main.ffea0cf4.js",
+    "main.js": "/react-cklingdesigns/static/js/main.50368b19.js",
     "static/js/453.98bb53cb.chunk.js": "/react-cklingdesigns/static/js/453.98bb53cb.chunk.js",
     "static/media/fa-solid-900.ttf": "/react-cklingdesigns/static/media/fa-solid-900.2582b0e4bcf85eceead0.ttf",
     "static/media/fa-brands-400.ttf": "/react-cklingdesigns/static/media/fa-brands-400.1815e00441357e01619e.ttf",
@@ -13,11 +13,11 @@
     "static/media/fa-v4compatibility.woff2": "/react-cklingdesigns/static/media/fa-v4compatibility.ea8f94e1d22e0d35ccd4.woff2",
     "index.html": "/react-cklingdesigns/index.html",
     "main.95f453f8.css.map": "/react-cklingdesigns/static/css/main.95f453f8.css.map",
-    "main.ffea0cf4.js.map": "/react-cklingdesigns/static/js/main.ffea0cf4.js.map",
+    "main.50368b19.js.map": "/react-cklingdesigns/static/js/main.50368b19.js.map",
     "453.98bb53cb.chunk.js.map": "/react-cklingdesigns/static/js/453.98bb53cb.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.95f453f8.css",
-    "static/js/main.ffea0cf4.js"
+    "static/js/main.50368b19.js"
   ]
 }
