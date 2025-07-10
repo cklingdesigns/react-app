@@ -1,6 +1,7 @@
 // ContactModal.js
 import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
+import emailjs from 'emailjs-com';
 
 const ContactModal = ({ show, handleClose }) => {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
@@ -9,17 +10,27 @@ const ContactModal = ({ show, handleClose }) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Submitted:', form);
-    // You could hook this up with EmailJS, Formspree, or an API call
-    handleClose(); // Close modal after submission
-  };
+const handleSubmit = (e) => {
+  e.preventDefault();
+
+  emailjs.send(
+    'service_tmjq4ps',
+    'template_o5l98s7',
+    form,
+    'cNn2xjgDIP62mpfF8'
+  ).then((result) => {
+      alert('Message sent!');
+      setForm({ name: '', email: '', message: '' });
+      handleClose();
+    }, (error) => {
+      alert('Failed to send: ' + error.text);
+    });
+};
 
   return (
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Contact Us</Modal.Title>
+        <Modal.Title>Contact Corey Kling</Modal.Title>
       </Modal.Header>
       <Form onSubmit={handleSubmit}>
         <Modal.Body>

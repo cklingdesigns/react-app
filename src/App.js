@@ -1,12 +1,17 @@
 //import react from 'react'
-import './App.css';
 import './navBar/NavBar.js';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import './App.css';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import React, { useState, useEffect, useCallback } from 'react';
+import { BrowserRouter } from 'react-router-dom';
+
+<BrowserRouter basename={process.env.NODE_ENV === 'production' ? '/react-app' : '/'}>
+  <App />
+</BrowserRouter>
 import ContactModal from './ContactModal';
 import {
   ImageSlideshowHobbies,
@@ -186,8 +191,8 @@ function App() {
     <main role="main">
       <section className="jumbotron text-center">
         <div className="container">
-          <h1 className="jumbotron-heading">Kling's Ominous Portfolio</h1>
-          <p className="lead text-muted">Leading a life of many talents!</p>
+          <h1 className="loading-text">Kling's Creative Portfolio</h1>
+          <p className="lead text-muted">A Fusion of Art, Design & Innovation</p>
         </div>
       </section>
       <div className="album py-5 bg-light">
@@ -203,13 +208,38 @@ function App() {
                     <div className="btn-group">
                       <Button variant="primary">View</Button>
                     </div>
-                    <small className="text-muted">9 mins</small>
                   </div>
                 </div>
               </div>
             </div>
             <div className="col-md-4"></div>
           </div>
+          <div className="row text-center">
+            <div className="col-md-4 vertical-line"></div>
+          </div>
+          <div className="row text-center">
+            <div className="col-md-4"></div>
+            <div className="col-md-4">
+              <div className="card mb-4 box-shadow">
+                <ImageSlideshowMarketing />
+                <div className="card-body">
+                  <p className="card-text">Marketing/Design</p>
+                  <div className="d-flex justify-content-between align-items-center">
+                    <div className="btn-group">
+                      <Button variant="primary">View</Button>                    
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-4"></div>
+          </div>
+          <div className="row text-center">
+            <div className="col-md-4 vertical-line"></div>
+          </div>
+
+
+
           <div className="row">
             <div className="col-md-4">
               <div className="card mb-4 box-shadow">
@@ -220,7 +250,6 @@ function App() {
                     <div className="btn-group">
                       <Button variant="primary">View</Button>                    
                     </div>
-                    <small className="text-muted">9 mins</small>
                   </div>
                 </div>
               </div>
@@ -234,7 +263,6 @@ function App() {
                     <div className="btn-group">
                       <Button variant="primary">View</Button>                    
                     </div>
-                    <small className="text-muted">9 mins</small>
                   </div>
                 </div>
               </div>
@@ -249,11 +277,17 @@ function App() {
                     <div className="btn-group">
                       <Button variant="primary">View</Button>                    
                     </div>
-                    <small className="text-muted">9 mins</small>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
+          <div className="row text-center">
+            <div className="col-md-4 vertical-line"></div>
+            <div className="col-md-4 vertical-line"></div>
+            <div className="col-md-4 vertical-line"></div>
+          </div>
+          <div className="row">
             <div className="col-md-4">
               <div className="card mb-4 box-shadow">
                 <ImageSlideshowHolidayFun />
@@ -263,35 +297,6 @@ function App() {
                     <div className="btn-group">
                       <Button variant="primary">View</Button>                    
                     </div>
-                    <small className="text-muted">9 mins</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-4">
-              <div className="card mb-4 box-shadow">
-                <ImageSlideshowMarketing />
-                <div className="card-body">
-                  <p className="card-text">Marketing/Design</p>
-                  <div className="d-flex justify-content-between align-items-center">
-                    <div className="btn-group">
-                      <Button variant="primary">View</Button>                    
-                    </div>
-                    <small className="text-muted">9 mins</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-4">
-              <div className="card mb-4 box-shadow">
-                <ImageSlideshowWoodworking />
-                <div className="card-body">
-                  <p className="card-text">Woodworking Projects</p>
-                  <div className="d-flex justify-content-between align-items-center">
-                    <div className="btn-group">
-                      <Button variant="primary">View</Button>                    
-                    </div>
-                    <small className="text-muted">9 mins</small>
                   </div>
                 </div>
               </div>
@@ -305,7 +310,19 @@ function App() {
                     <div className="btn-group">
                       <Button variant="primary">View</Button>                    
                     </div>
-                    <small className="text-muted">9 mins</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-4">
+              <div className="card mb-4 box-shadow">
+                <ImageSlideshowWoodworking />
+                <div className="card-body">
+                  <p className="card-text">Woodworking Projects</p>
+                  <div className="d-flex justify-content-between align-items-center">
+                    <div className="btn-group">
+                      <Button variant="primary">View</Button>                    
+                    </div>
                   </div>
                 </div>
               </div>
